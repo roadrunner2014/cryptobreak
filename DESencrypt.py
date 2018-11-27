@@ -13,6 +13,7 @@ plaintextsize = len(plain)
 key = b'beefbeef'
 iv = b'abcdefgh'
 cipher = DES.new(key, DES.MODE_OFB)
+print cipher
 
 
 # Data padding if input data is not a multiple of 8
