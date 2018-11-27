@@ -10,6 +10,7 @@ import sys
 import time
 
 start = time.time()
+totaltime = float()
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
@@ -32,4 +33,10 @@ msg = iv + cipher.encrypt(inputdata)
 #print msg
 
 end = time.time()
-print "Time to compute = ", (end-start)
+tt = (end-start)
+
+print "Time to compute = ", tt, "for processor rank = ", rank
+
+totaltime += tt
+print "Total time to encrypt data = ", str(totaltime)
+
