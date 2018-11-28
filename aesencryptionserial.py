@@ -21,7 +21,7 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 
 
 # File(s) to encrypt
-numfiles = 1000
+numfiles = 10
 x = 1
 myfiledata = open("shakespeare.txt", "r")
 inputdata = myfiledata.read() + 'This is the end of the file'
@@ -30,6 +30,7 @@ totalsize = os.path.getsize('shakespeare.txt')
 for x in range(numfiles):
     filedata = open("shakespeare.txt", "r")
     inputdata = filedata.read() + 'This is the end of the file'
+    msg = iv + cipher.encrypt(inputdata)
     filesize = os.path.getsize('shakespeare.txt')
     totalsize += filesize
     x += 1
@@ -40,7 +41,6 @@ print "Total Size of file(s) encypted =  ", totalsize
 
 #inputdata = b'Attack at dawn Attack at dawn Attack at dawn Attack at dawn'
 #msg = iv + cipher.encrypt(b'Attack at dawn Attack at dawn Attack at dawn Attack at dawn Attack at dawn Attack at dawn')
-msg = iv + cipher.encrypt(inputdata)
 #print msg
 
 end = time.time()
