@@ -53,29 +53,30 @@ for x in range(numfiles):
     ba = bytearray(f.Get_size())
     # read the contents into a byte array
     f.Iread(ba)
-    msg = iv + cipher.encrypt(f)
+    f.Close()
+    # write buffer to a tempfile
+    descriptor, path = tempfile.mkstemp(suffix='mpi.txt')
+    print (path)
+    tf = os.fdopen(descriptor, 'w')
+    tf.write(ba)
+    # get contents of tempfile
+    contents = open(path, 'rU').read() + str(comm.Get_rank())
+    os.remove(path)
+    msg = iv + cipher.encrypt(contents)
+    tf.close()
     filesize = os.path.getsize(work)
     totalsize += filesize
     x += 1
     if x > 3:
         break
-f.Close()
-# write buffer to a tempfile
-descriptor, path = tempfile.mkstemp(suffix='mpi.txt')
-print (path)
-tf = os.fdopen(descriptor, 'w')
-tf.write(ba)
-tf.close()
-# get contents of tempfile
-contents = open(path, 'rU').read() + str(comm.Get_rank())
-os.remove(path)
+
 
 # ===================================
 # End of node-related work
 # ===================================
 
 # gather results
-result = comm.gather(contents, root=0)
+result = comm.gather(msg, root=0)
 # do something with result
 if rank == 0:
     print (result)
