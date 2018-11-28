@@ -24,6 +24,8 @@ myfiledata = open("shakespeare.txt", "r")
 #print(myfiledata.read())
 inputdata = myfiledata.read() + str('This is the end of the file')
 #print inputdata
+filesize = os.path.getsize('shakespeare.txt')
+print "Size of file(s) encypted =  ", filesize
 print "  "
 
 #inputdata = b'Attack at dawn Attack at dawn Attack at dawn Attack at dawn'
