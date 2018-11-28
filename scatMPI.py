@@ -8,6 +8,7 @@ Created on Wed Nov 28 00:52:36 2018
 from Crypto.Cipher import AES
 from Crypto import Random
 from mpi4py import MPI
+import tempfile
 import os
 import random
 import sys
@@ -58,7 +59,28 @@ for x in range(numfiles):
     x += 1
     if x > 3:
         break
+f.Close()
+# write buffer to a tempfile
+descriptor, path = tempfile.mkstemp(suffix='mpi.txt')
+print (path)
+tf = os.fdopen(descriptor, 'w')
+tf.write(ba)
+tf.close()
+# get contents of tempfile
+contents = open(path, 'rU').read() + str(comm.Get_rank())
+os.remove(path)
 
+# ===================================
+# End of node-related work
+# ===================================
+
+# gather results
+result = comm.gather(contents, root=0)
+# do something with result
+if rank == 0:
+    print (result)
+else:
+    result = None
 
 # Details on number and size of files
 print ("Number of files encrypted = ", x)
