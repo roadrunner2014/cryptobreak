@@ -56,6 +56,8 @@ for x in range(numfiles):
     filesize = os.path.getsize(work)
     totalsize += filesize
     x += 1
+    if x > 3:
+        break
 
 
 # Details on number and size of files
