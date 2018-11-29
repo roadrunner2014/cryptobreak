@@ -24,7 +24,7 @@ size = comm.Get_size()
 key = b'Sixteen byte key'
 iv = Random.new().read(AES.block_size)
 cipher = AES.new(key, AES.MODE_CFB, iv)
-
+msg = ['shakespeare.txt']
 if rank == 0:
     # get a list of the files to scatter
     #for f in glob.glob(args.alignments):
