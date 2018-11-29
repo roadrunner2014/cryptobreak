@@ -21,7 +21,7 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 
 
 # File(s) to encrypt
-numfiles = 10
+numfiles = 100
 x = 1
 myfiledata = open("shakespeare.txt", "r")
 inputdata = myfiledata.read() + 'This is the end of the file'

@@ -23,7 +23,7 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 
 # File(s) to encrypt
 # Assume number of files = size (i.e. number of processes)
-numfiles = 10
+numfiles = size
 totalsize = os.path.getsize('shakespeare.txt')
 count = 1
 
