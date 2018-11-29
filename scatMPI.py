@@ -39,7 +39,7 @@ x = 1
 #inputdata = myfiledata.read() + 'This is the end of the file'
 #totalsize = os.path.getsize('shakespeare.txt')
 
-unit = comm.scatterv(work, root=0)
+unit = comm.Scatter(work, root=0)
 
 
 
@@ -73,7 +73,7 @@ for x in range(numfiles<1):
 # ===================================
 
 # gather results
-result = comm.gatherv(msg, root=0)
+result = comm.Gather(msg, root=0)
 # do something with result
 if rank == 0:
     print (result)
