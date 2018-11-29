@@ -7,6 +7,11 @@ import random
 import sys
 import time
 
+
+# User selectable input for number of files to encrypt
+numfiles = int(raw_input("Enter total files to encrypt: "))
+
+
 start = time.time()
 
 # OpenMPI setup
@@ -21,7 +26,6 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 
 
 # File(s) to encrypt
-numfiles = 100
 x = 1
 myfiledata = open("shakespeare.txt", "r")
 inputdata = myfiledata.read() + 'This is the end of the file'
