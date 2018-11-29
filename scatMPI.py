@@ -30,12 +30,12 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 if rank == 0:
     # get a list of the files to scatter
     #for f in glob.glob(args.alignments):
-    work = ['shakespeare.txt', 'shakespeare2.txt','shakespeare3.txt']
+    work = ['shakespeare.txt']
 else:
     work = None
 
 # File(s) to encrypt
-numfiles = 3 
+numfiles = 1000
 x = 1
 #myfiledata = open("shakespeare.txt", "r")
 #inputdata = myfiledata.read() + 'This is the end of the file'
@@ -67,10 +67,9 @@ for x in range(numfiles):
     filesize = os.path.getsize(work)
     totalsize += filesize
     x += 1
-    if x > 3:
+    if x > numfiles:
         break
-
-
+    
 # ===================================
 # End of node-related work
 # ===================================
