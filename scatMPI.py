@@ -10,8 +10,6 @@ from Crypto import Random
 from mpi4py import MPI
 import tempfile
 import os
-import random
-import sys
 import time
 
 start = time.time()
@@ -46,7 +44,7 @@ unit = comm.scatterv(work, root=0)
 
 
 
-for x in range(numfiles):
+for x in range(numfiles<1):
     # open the file on a node
     f = MPI.File.Open(comm, unit, mode)
     # create a buffer for the data of size f.Get_size()
