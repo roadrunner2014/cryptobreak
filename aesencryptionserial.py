@@ -3,8 +3,6 @@ from Crypto.Cipher import AES
 from Crypto import Random
 from mpi4py import MPI
 import os
-import random
-import sys
 import time
 
 
@@ -25,7 +23,7 @@ iv = Random.new().read(AES.block_size)
 cipher = AES.new(key, AES.MODE_CFB, iv)
 
 
-# File(s) to encrypt
+# Process File(s) to encrypt
 x = 1
 myfiledata = open("shakespeare.txt", "r")
 inputdata = myfiledata.read() + 'This is the end of the file'
@@ -43,9 +41,6 @@ for x in range(numfiles):
 print "Number of files encrypted = ", x
 print "Total Size of file(s) encypted =  ", totalsize
 
-#inputdata = b'Attack at dawn Attack at dawn Attack at dawn Attack at dawn'
-#msg = iv + cipher.encrypt(b'Attack at dawn Attack at dawn Attack at dawn Attack at dawn Attack at dawn Attack at dawn')
-#print msg
-
+# Prints total time for encryption process to compute
 end = time.time()
 print "Time to compute = ", (end-start), "for processor rank = ", rank
