@@ -1,12 +1,9 @@
-# ----------- aesencryptionserial.py ---------------------
+# ----------- aesencryptionserial-p2p.py ---------------------
 from Crypto.Cipher import AES
 from Crypto import Random
 from mpi4py import MPI
 import os
-import random
-import sys
 import time
-import numpy as np
 
 start = time.time()
 
@@ -40,7 +37,7 @@ else:
 # Local computation of encryption
 msg = iv + cipher.encrypt(inputdata)
 totalsize += os.path.getsize('shakespeare.txt')
-#print "encryption done on process ", rank
+print "encryption done on process ", rank
 
 # Wait until all processes are done
 comm.Barrier()
