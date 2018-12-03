@@ -8,6 +8,7 @@ Created on Wed Nov 28 00:52:36 2018
 from Crypto.Cipher import AES
 from Crypto import Random
 from mpi4py import MPI
+import numpy as np
 import tempfile
 import os
 import time
@@ -29,9 +30,10 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 numfiles = 1000
 x = 1
 myfiledata = open("shakespeare.txt", "r")
-inputdata = 'b' + myfiledata.read() + 'This is the end of the file'
+inputdata = myfiledata.read().split()
+inputArray = np.array(inputdata, dtype=np.uint8)
 totalsize = os.path.getsize('shakespeare.txt')
-msg = ' '
+msg = np.array(inputdata, dtype=np.uuint8)
 
 comm.Scatter(inputdata, msg, root=0)
 
