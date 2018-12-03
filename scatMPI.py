@@ -55,13 +55,13 @@ for x in range(numfiles<1):
 # ===================================
 
 # gather results
-result = comm.Gather(inputdata, msg, root=0)
+#result = comm.Gather(inputdata, msg, root=0)
 # do something with result
-if rank == 0:
+"""if rank == 0:
     print (result)
 else:
     result = None
-
+""""
 # Details on number and size of files
 print ("Number of files encrypted = ", x)
 print ("Total Size of file(s) encypted =  ", totalsize)
