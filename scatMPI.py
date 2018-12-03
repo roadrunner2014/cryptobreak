@@ -31,11 +31,12 @@ numfiles = 1000
 x = 1
 myfiledata = open('shakespeare.txt')
 inputdata = myfiledata.read()
-inputArray = np.array(inputdata, dtype=np.str)
+#inputArray = np.array(inputdata, dtype=np.str)
 totalsize = os.path.getsize('shakespeare.txt')
-msg = np.array(inputdata, dtype=np.str)
+msg = ' '
+#np.array(inputdata, dtype=np.str)
 
-comm.Scatter(inputdata, msg, root=0)
+comm.Scatterv(inputdata, msg, root=0)
 
 
 for x in range(numfiles<1):
@@ -53,7 +54,7 @@ for x in range(numfiles<1):
 # ===================================
 
 # gather results
-result = comm.Gather(inputdata, msg, root=0)
+result = comm.Gatherv(inputdata, msg, root=0)
 # do something with result
 if rank == 0:
     print (result)
