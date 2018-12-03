@@ -30,7 +30,7 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 numfiles = 1000
 x = 1
 myfiledata = open("shakespeare.txt", "r")
-inputdata = myfiledata.read().split()
+inputdata = 'b' + myfiledata.read()
 inputArray = np.array(inputdata, dtype=np.uint8)
 totalsize = os.path.getsize('shakespeare.txt')
 msg = np.array(inputdata, dtype=np.uuint8)
