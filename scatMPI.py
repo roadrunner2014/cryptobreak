@@ -30,10 +30,11 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 numfiles = 1000
 x = 1
 myfiledata = open('shakespeare.txt')
-inputdata = myfiledata.read()
+inputdata = np.array2string(myfiledata.read())
 #inputArray = np.array(inputdata, dtype=np.str)
 totalsize = os.path.getsize('shakespeare.txt')
-msg = ' '
+msg = np.empty()
+
 #np.array(inputdata, dtype=np.str)
 
 comm.Scatterv(inputdata, msg, root=0)
