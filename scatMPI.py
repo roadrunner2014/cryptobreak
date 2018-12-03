@@ -61,7 +61,7 @@ for x in range(numfiles<1):
     print (result)
 else:
     result = None
-""""
+"""
 # Details on number and size of files
 print ("Number of files encrypted = ", x)
 print ("Total Size of file(s) encypted =  ", totalsize)
