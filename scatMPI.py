@@ -33,12 +33,13 @@ inputdata = myfiledata.read() + 'This is the end of the file'
 totalsize = os.path.getsize('shakespeare.txt')
 msg = ' '
 
-unit = comm.Scatter(inputdata, msg, root=0)
+comm.Scatter(inputdata, msg, root=0)
 
 
 for x in range(numfiles<1):
    
     msg = iv + cipher.encrypt(inputdata)
+    print(msg)
     filesize = os.path.getsize(inputdata)
     totalsize += filesize
     x += 1
