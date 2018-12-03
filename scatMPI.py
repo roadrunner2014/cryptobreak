@@ -29,7 +29,7 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 numfiles = 1000
 x = 1
 myfiledata = open("shakespeare.txt", "r")
-inputdata = myfiledata.read() + 'This is the end of the file'
+inputdata = 'b' + myfiledata.read() + 'This is the end of the file'
 totalsize = os.path.getsize('shakespeare.txt')
 msg = ' '
 
