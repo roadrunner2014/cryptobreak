@@ -37,14 +37,14 @@ msg = np.array(np.empty)
 
 #np.array(inputdata, dtype=np.str)
 
-comm.Scatterv(inputdata, msg, root=0)
+unit = comm.Scatterv(inputdata, msg, root=0)
 
 
 for x in range(numfiles<1):
    
-    msg = iv + cipher.encrypt(inputdata)
+    msg = iv + cipher.encrypt(unit)
     print(msg)
-    filesize = os.path.getsize(inputdata)
+    filesize = os.path.getsize(unit)
     totalsize += filesize
     x += 1
     if x > numfiles:
