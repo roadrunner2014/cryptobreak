@@ -31,9 +31,9 @@ numfiles = 1000
 x = 1
 myfiledata = open('shakespeare.txt')
 inputdata = myfiledata.read()
-inputArray = np.array(inputdata, dtype=np.uint8)
+inputArray = np.array(inputdata, dtype=np.str)
 totalsize = os.path.getsize('shakespeare.txt')
-msg = np.array(inputdata, dtype=np.uuint8)
+msg = np.array(inputdata, dtype=np.str)
 
 comm.Scatter(inputdata, msg, root=0)
 
