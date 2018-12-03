@@ -37,7 +37,7 @@ msg = np.array(np.empty)
 
 #np.array(inputdata, dtype=np.str)
 
-unit = comm.Scatterv(inputdata, msg, root=0)
+unit = comm.Scatter(inputdata, msg, root=0)
 
 
 for x in range(numfiles<1):
@@ -55,7 +55,7 @@ for x in range(numfiles<1):
 # ===================================
 
 # gather results
-result = comm.Gatherv(inputdata, msg, root=0)
+result = comm.Gather(inputdata, msg, root=0)
 # do something with result
 if rank == 0:
     print (result)
