@@ -24,45 +24,22 @@ size = comm.Get_size()
 key = b'Sixteen byte key'
 iv = Random.new().read(AES.block_size)
 cipher = AES.new(key, AES.MODE_CFB, iv)
-msg = ['shakespeare.txt']
-if rank == 0:
-    # get a list of the files to scatter
-    #for f in glob.glob(args.alignments):
-    work = ['shakespeare.txt']
-else:
-    work = None
 
 # File(s) to encrypt
 numfiles = 1000
 x = 1
-#myfiledata = open("shakespeare.txt", "r")
-#inputdata = myfiledata.read() + 'This is the end of the file'
-#totalsize = os.path.getsize('shakespeare.txt')
+myfiledata = open("shakespeare.txt", "r")
+inputdata = myfiledata.read() + 'This is the end of the file'
+totalsize = os.path.getsize('shakespeare.txt')
+msg = ' '
 
-unit = comm.Scatter(work, msg, root=0)
-
-
+unit = comm.Scatter(inputdata, msg, root=0)
 
 
 for x in range(numfiles<1):
-    # open the file on a node
-    f = MPI.File.Open(comm, unit, mode)
-    # create a buffer for the data of size f.Get_size()
-    ba = bytearray(f.Get_size())
-    # read the contents into a byte array
-    f.Iread(ba)
-    f.Close()
-    # write buffer to a tempfile
-    descriptor, path = tempfile.mkstemp(suffix='mpi.txt')
-    print (path)
-    tf = os.fdopen(descriptor, 'w')
-    tf.write(ba)
-    # get contents of tempfile
-    contents = open(path, 'rU').read() + str(comm.Get_rank())
-    os.remove(path)
-    msg = iv + cipher.encrypt(contents)
-    tf.close()
-    filesize = os.path.getsize(work)
+   
+    msg = iv + cipher.encrypt(inputdata)
+    filesize = os.path.getsize(inputdata)
     totalsize += filesize
     x += 1
     if x > numfiles:
@@ -73,7 +50,7 @@ for x in range(numfiles<1):
 # ===================================
 
 # gather results
-result = comm.Gather(work, msg, root=0)
+result = comm.Gather(inputdata, msg, root=0)
 # do something with result
 if rank == 0:
     print (result)
