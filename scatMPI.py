@@ -33,7 +33,7 @@ myfiledata = open('shakespeare.txt')
 inputdata = np.array(myfiledata.read())
 #inputArray = np.array(inputdata, dtype=np.str)
 totalsize = os.path.getsize('shakespeare.txt')
-msg = np.empty()
+msg = np.array()
 
 #np.array(inputdata, dtype=np.str)
 
