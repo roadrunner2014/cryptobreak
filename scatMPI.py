@@ -29,11 +29,11 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 # File(s) to encrypt
 numfiles = 1000
 x = 1
-myfiledata = open('shakespeare2.txt')
+myfiledata = open('shakespeare.txt')
 print(myfiledata)
 inputdata = np.fromstring(myfiledata.read(), dtype=np.uint8)
 #inputArray = np.array(inputdata, dtype=np.str)
-totalsize = os.path.getsize('shakespeare2.txt')
+totalsize = os.path.getsize('shakespeare.txt')
 msg = np.array(np.empty)
 
 
