@@ -34,7 +34,7 @@ totalsize = os.path.getsize('shakespeare.txt')
 msg = np.array(np.empty)
 
 
-comm.Scatterv(inputdata,msg, root=0)
+#comm.Scatterv(inputdata,msg, root=0)
 """
 for x in range(numfiles):
     
@@ -46,8 +46,7 @@ for x in range(numfiles):
         break
 """
 for x in range(numfiles):
-    filedata = open("shakespeare.txt", "r")
-    inputdata = filedata.read() + 'This is the end of the file'
+    
     msg = iv + cipher.encrypt(inputdata)
     filesize = os.path.getsize('shakespeare.txt')
     totalsize += filesize
