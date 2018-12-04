@@ -26,7 +26,7 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 
 # File(s) to encrypt
 # Assume number of files = size (i.e. number of processes)
-numfiles = 1000
+numfiles = 100
 totalsize = os.path.getsize('shakespeare.txt')
 inputArray = np.fromfile(open("shakespeare.txt"))
 count = 1
