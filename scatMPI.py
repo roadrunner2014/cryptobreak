@@ -9,7 +9,6 @@ from Crypto.Cipher import AES
 from Crypto import Random
 from mpi4py import MPI
 import numpy as np
-import tempfile
 import os
 import time
 
@@ -36,11 +35,11 @@ totalsize = os.path.getsize('shakespeare.txt')
 msg = np.array(np.empty)
 
 
-unit = comm.Scatterv(inputdata,msg, root=0)
+comm.Scatterv(inputdata,msg, root=0)
 
 
 for x in range(numfiles>1):
-   
+    
     msg = iv + cipher.encrypt(inputdata)
     filesize = os.path.getsize(inputdata)
     totalsize += filesize
@@ -53,7 +52,7 @@ for x in range(numfiles>1):
 # ===================================
 
 # gather results
-result = comm.Gatherv(inputdata, msg, rank=0)
+#comm.Gatherv(msg, inputdata, rank=0)
 # do something with result
 """
 if rank == 0:
