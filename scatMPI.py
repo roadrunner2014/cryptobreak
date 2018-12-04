@@ -93,7 +93,7 @@ numfiles = 10
 totalsize = os.path.getsize('shakespeare.txt')
 inputArray = np.fromfile(open("shakespeare.txt"))
 count = 1
-output = np.empty()
+output = np.empty(os.path.getsize("shakespeare.txt"))
 comm.Scatterv(inputArray, output, root=0)
 if rank == 0:
     for i in range(1, numfiles):
