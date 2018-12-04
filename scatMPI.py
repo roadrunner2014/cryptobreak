@@ -15,7 +15,6 @@ import time
 start = time.time()
 
 # OpenMPI setup
-mode = MPI.MODE_RDONLY
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
@@ -26,10 +25,10 @@ iv = Random.new().read(AES.block_size)
 cipher = AES.new(key, AES.MODE_CFB, iv)
 
 # File(s) to encrypt
-numfiles = 2
+numfiles = int(input("Enter total files to encrypt: "))
 x = 1
-myfiledata =  open('shakespeare.txt')
-inputdata = np.fromfile(myfiledata.read(), dtype=np.uint8)
+myfiledata =  open("shakespeare.txt", "r")
+inputdata = np.fromfile(myfiledata.read() + "This is the end", dtype=np.uint8)
 #inputArray = np.array(inputdata, dtype=np.str)
 totalsize = os.path.getsize('shakespeare.txt')
 msg = np.array(np.empty)
