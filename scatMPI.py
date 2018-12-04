@@ -30,13 +30,13 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 numfiles = 1000
 x = 1
 myfiledata = open('shakespeare.txt')
-inputdata = np.fromstring(myfiledata.read(), dtype=np.uint8)
+inputdata = np.fromfile(myfiledata.read(), dtype=np.uint8)
 #inputArray = np.array(inputdata, dtype=np.str)
 totalsize = os.path.getsize('shakespeare.txt')
 msg = np.array(np.empty)
 
 
-unit = comm.send(inputdata)
+unit = comm.Scatterv(inputdata,msg, root=0)
 
 
 for x in range(numfiles<1):
@@ -54,13 +54,13 @@ for x in range(numfiles<1):
 # ===================================
 
 # gather results
-result = comm.recv(msg)
+result = comm.Gatherv(inputdata, msg, rank=0)
 # do something with result
-"""if rank == 0:
+if rank == 0:
     print (result)
 else:
     result = None
-"""
+
 # Details on number and size of files
 print ("Number of files encrypted = ", x)
 print ("Total Size of file(s) encypted =  ", totalsize)
