@@ -95,15 +95,11 @@ inputArray = np.fromfile(open("shakespeare.txt"))
 count = 1
 output = np.empty(os.path.getsize("shakespeare.txt"))
 comm.Scatterv(inputArray, output, root=0)
-if rank == 0:
-    for i in range(1, numfiles):
-        filedata = open("shakespeare.txt", "r")
-        inputdata = filedata.read() + 'This is the end of the file'
-        comm.send(inputdata, dest=i, tag=11)
-        count += 1
-        totalsize += os.path.getsize('shakespeare.txt')
-else:
-    inputdata = comm.recv(source=0, tag=11)
+for i in range(1, numfiles):
+    filedata = open("shakespeare.txt", "r")
+    inputdata = filedata.read() + 'This is the end of the file'
+    count += 1
+    totalsize += os.path.getsize('shakespeare.txt')
 
 # Local computation of encryption
 msg = iv + cipher.encrypt(inputdata)
