@@ -41,9 +41,8 @@ unit = comm.Scatterv(inputdata,msg, root=0)
 
 for x in range(numfiles>1):
    
-    msg = iv + cipher.encrypt(unit)
-    print(msg)
-    filesize = os.path.getsize(unit)
+    msg = iv + cipher.encrypt(inputdata)
+    filesize = os.path.getsize(inputdata)
     totalsize += filesize
     x += 1
     if x > numfiles:
