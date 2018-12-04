@@ -89,7 +89,7 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 
 # File(s) to encrypt
 # Assume number of files = size (i.e. number of processes)
-numfiles = 10
+numfiles = 100
 totalsize = os.path.getsize('shakespeare.txt')
 inputArray = np.fromfile(open("shakespeare.txt"))
 count = 1
@@ -104,7 +104,7 @@ for i in range(1, numfiles):
 # Local computation of encryption
 msg = iv + cipher.encrypt(inputdata)
 totalsize += os.path.getsize('shakespeare.txt')
-print ("encryption done on process ", rank)
+print ("encryption done by: ", rank)
 
 # Wait until all processes are done
 comm.Barrier()
@@ -114,4 +114,4 @@ if rank == 0:
     print ("Number of files encrypted = ", count)
     print ("Total Size of file(s) encypted =  ", totalsize)
     end = time.time()
-    print ("Time to compute = ", (end-start), "using point-to-point communication")
+    print ("Time to compute = ", (end-start)
