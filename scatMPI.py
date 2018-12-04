@@ -28,23 +28,14 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 numfiles = 2
 x = 1
 myfiledata =  open("shakespeare.txt", "r")
-inputdata = np.fromfile(myfiledata.read() + "This is the end", dtype=np.uint8)
-#inputArray = np.array(inputdata, dtype=np.str)
+inputdata = (myfiledata.read() + "This is the end")
+inputArray = np.fromstring(inputdata)
 totalsize = os.path.getsize('shakespeare.txt')
 msg = np.array(np.empty)
 
 
-#comm.Scatterv(inputdata,msg, root=0)
-"""
-for x in range(numfiles):
-    
-    msg = iv + cipher.encrypt(inputdata)
-    filesize = os.path.getsize(inputdata)
-    totalsize += filesize
-    x += 1
-    if x > numfiles:
-        break
-"""
+comm.Scatterv(inputArray,msg, root=0)
+
 for x in range(numfiles):
     
     msg = iv + cipher.encrypt(inputdata)
