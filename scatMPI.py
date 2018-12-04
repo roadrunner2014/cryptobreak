@@ -114,4 +114,4 @@ if rank == 0:
     print ("Number of files encrypted = ", count)
     print ("Total Size of file(s) encypted =  ", totalsize)
     end = time.time()
-    print ("Time to compute = ", (end-start)
+    print ("Time to compute = ", (end-start))
