@@ -27,7 +27,7 @@ iv = Random.new().read(AES.block_size)
 cipher = AES.new(key, AES.MODE_CFB, iv)
 
 # File(s) to encrypt
-numfiles = 1000
+numfiles = 2
 x = 1
 myfiledata = open('shakespeare.txt')
 inputdata = np.fromfile(myfiledata.read(), dtype=np.uint8)
@@ -39,7 +39,7 @@ msg = np.array(np.empty)
 unit = comm.Scatterv(inputdata,msg, root=0)
 
 
-for x in range(numfiles<1):
+for x in range(numfiles>1):
    
     msg = iv + cipher.encrypt(unit)
     print(msg)
