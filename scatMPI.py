@@ -28,8 +28,8 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 # File(s) to encrypt
 numfiles = 2
 x = 1
-with open('shakespeare.txt') as myfiledata:
-    inputdata = np.fromfile(myfiledata.read(), dtype=np.uint8)
+myfiledata =  open('shakespeare.txt')
+inputdata = np.fromfile(myfiledata.read(), dtype=np.uint8)
 #inputArray = np.array(inputdata, dtype=np.str)
 totalsize = os.path.getsize('shakespeare.txt')
 msg = np.array(np.empty)
