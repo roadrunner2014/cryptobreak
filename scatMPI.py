@@ -29,7 +29,7 @@ numfiles = 2
 x = 1
 myfiledata =  open("shakespeare.txt", "r")
 inputdata = (myfiledata.read() + "This is the end")
-inputArray = np.fromstring(inputdata)
+inputArray = np.fromfile(inputdata)
 totalsize = os.path.getsize('shakespeare.txt')
 msg = np.array(np.empty)
 
