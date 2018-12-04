@@ -36,9 +36,8 @@ msg = np.array(np.empty)
 
 
 comm.Scatterv(inputdata,msg, root=0)
-
-
-for x in range(numfiles>1):
+"""
+for x in range(numfiles):
     
     msg = iv + cipher.encrypt(inputdata)
     filesize = os.path.getsize(inputdata)
@@ -46,7 +45,15 @@ for x in range(numfiles>1):
     x += 1
     if x > numfiles:
         break
-    
+"""
+for x in range(numfiles):
+    filedata = open("shakespeare.txt", "r")
+    inputdata = filedata.read() + 'This is the end of the file'
+    msg = iv + cipher.encrypt(inputdata)
+    filesize = os.path.getsize('shakespeare.txt')
+    totalsize += filesize
+    x += 1
+
 # ===================================
 # End of node-related work
 # ===================================
