@@ -25,7 +25,7 @@ iv = Random.new().read(AES.block_size)
 cipher = AES.new(key, AES.MODE_CFB, iv)
 
 # File(s) to encrypt
-numfiles = int(raw_input("Enter total files to encrypt: "))
+numfiles = 100
 x = 1
 myfiledata =  open("shakespeare.txt", "r")
 inputdata = np.fromfile(myfiledata.read() + "This is the end", dtype=np.uint8)
