@@ -30,15 +30,13 @@ cipher = AES.new(key, AES.MODE_CFB, iv)
 numfiles = 1000
 x = 1
 myfiledata = open('shakespeare.txt')
-print(myfiledata)
 inputdata = np.fromstring(myfiledata.read(), dtype=np.uint8)
 #inputArray = np.array(inputdata, dtype=np.str)
 totalsize = os.path.getsize('shakespeare.txt')
 msg = np.array(np.empty)
 
 
-
-unit = comm.Scatter(inputdata, msg, root=0)
+unit = comm.send(inputdata)
 
 
 for x in range(numfiles<1):
@@ -56,7 +54,7 @@ for x in range(numfiles<1):
 # ===================================
 
 # gather results
-result = comm.Gather(inputdata, msg)
+result = comm.recv(msg)
 # do something with result
 """if rank == 0:
     print (result)
